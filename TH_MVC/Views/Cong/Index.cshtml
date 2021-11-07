@@ -1,0 +1,75 @@
+﻿
+@{ Layout = null; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body ng-app="MyApp">
+
+
+    <table ng-controller="UserController">
+        <tr>
+            <td>UserName</td>
+            <td>Pass word</td>
+        </tr>
+        <tr ng-repeat="s in Users">
+            <td>{{s.name}}</td>
+            <td>{{s.pas}}</td>
+        </tr>
+
+    </table>
+
+
+
+
+    <div ng-controller="GPTB2Controller">
+        <h1>{{tacgia}}</h1>
+        <form>
+            <p>
+                Số a: <input ng-model="PT.a" />
+                Số b: <input ng-model="PT.b" />
+                Số c: <input ng-model="PT.c" />
+            </p>
+            <p>
+                <button ng-click="GiaiPhuongTrinh()">
+                    Giải phương trình
+                </button>
+            </p>
+        </form>
+        <div>
+            {{PT.KL}} {{PT.X1}} {{PT.X2}}
+        </div>
+    </div>
+    <div ng-controller="PhepToan">
+        <h1>{{tacgia}}</h1>
+        <form>
+            <p>
+                Số a: <input ng-model="P.a" />
+                Số b: <input ng-model="P.b" />
+                Phép toán :
+                <select ng-model="P.pt">
+                    <option>+</option>
+                    <option>-</option>
+                    <option>*</option>
+                    <option>/</option>
+                </select>
+            </p>
+            <p>
+                <button ng-click="Tinh()">
+                    Tính
+                </button>
+            </p>
+        </form>
+        <div>
+            {{P.a}} {{P.pt}} {{P.b}}={{P.KQ}}
+        </div>
+    </div>
+    <script src="~/Scripts/Controller/BaiTH_1.js"></script>
+</body>
+</html>

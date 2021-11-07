@@ -1,0 +1,247 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="slideshow">
+    <img id="slide" src='~/images/1.jpg' style='width: 100%;height: 400px;' />
+    <img onclick='Next()' style='position: absolute;top: 200px;right: 0px;' />
+    <img onclick='Back()' style='position: absolute;top: 200px;left: 0px;' />
+</div>
+
+<div class='main' ng-app="CustommerApp">
+    <div id='search-re'>
+    </div>
+    <div id="main">
+
+        <div class=head style="width: 100%;height: 55px; display: flex;">
+            <div class="sort" style="height: 55px;width: 150px;padding-top: 15px;padding-left: 740px;">
+                <select name="sort-price" id="sort-price" style="height:35px;width:150px;" ng-model="sortcolumn">
+                    <option value="TenSP">Tên sản phẩm</option>
+                    <option value="MaSP" selected="selected">Mã sản phẩm</option>
+                </select>
+            </div>
+            <div>
+                Sorting direction:
+                <input type="button" value="{{dr}}" ng-click="Chon(dr)" />
+            </div>
+        </div>
+
+        <div style="width:25%;height:35px; color: #6E573D; position: relative">
+            <label style="padding-left:20px;line-height: 40px; font-size: 25px"><b>GỢI Ý CHO BẠN</b></label>
+        </div>
+        <div style='width: 30%;height: 2.5px; background-color: #6E573D; margin-left:20px; '></div>
+
+        <div class="listSanpham" ng-controller="SanPhamController">
+
+            <div class="col-3 col-m-6 col-s-12">
+                <div dir-paginate="sp in listSanPham.SanPhams|orderBy:sortcolumn:reverse|itemsPerPage:pageSize"
+                     total-items="totalCount">
+
+
+                    <div id='0' class="product">
+
+                        <a ng-click="SelectSanPham(sp.MaSP)" href="/ChiTietSP/Index">
+                            <img class="product-img"
+                                 src="~/images/{{s.MaSP}}/{{s.Anh}}" />
+                        </a>
+
+                        @*<img class="product-img" src="~/images/m1.jpg" />*@
+                        <a href="#" class="product-name">{{sp.TenSP}}</a>
+
+                        <input type='button' class='btn-buy' value='CHỌN MUA' />
+                        <input type='button' class="btn-view" value="CHI TIẾT"
+                               onclick="location='./ProductDetail.html'" />
+                    </div>
+                </div>
+            </div>
+            <dir-pagination-controls max-size="maxSize"
+                                     direction-links="true"
+                                     boundary-links="true"
+                                     on-page-change="GetSanPhamList(newPageNumber)">
+            </dir-pagination-controls>
+
+
+
+
+
+
+            <!--<div class="col-3 col-m-6 col-s-12" ng-repeat="sp in SanPhams" >
+            <div id='0' class="product">
+                <img class="product-img" src="~/images/m1.jpg" />
+                <label class="product-name"><a href="#">Dưỡng ẩm Laneige</a></label>
+                Giá cũ: <label class="product-oldprice"><s>200.000đ</s></label> <br />
+                Giá mới: <label class="product-price">190.000 đ</label>-->
+            <!--<a href='ct.html' />-->
+            <!--<input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' onclick="location='ct.html'" value='CHI TIẾT' />
+
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='1' class="product">
+                    <img class="product-img" src="~/images/m2.jpg" />
+                    <label class="product-name"><a href="#">Chai xịt khoáng Laneige</a></label>
+                    Giá cũ: <label class="product-oldprice"><s>700.000đ</s></label> <br />
+                    Giá mới: <label class="product-price">650.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='2' class="product">
+                    <img class="product-img" src="~/images/m3.jpg" />
+                    <label class="product-name"><a href="#">Kem chống nắng ANESSA</a></label>
+                    Giá cũ: <label class="product-oldprice"><s>700.000đ</s></label> <br />
+                    Giá mới: <label class="product-price">670.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='3' class="product">
+                    <img class="product-img" src="~/images/m4.jpg" />
+                    <label class="product-name"><a href="#">Nước tẩy trang Bioderma</a></label>
+                    Giá cũ: <label class="product-oldprice"><s>500.000đ</s></label> <br />
+                    Giá mới: <label class="product-price">490.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+
+            <label style="padding-left:20px;line-height: 40px;font-size: 25px;color: #6E573D"><b>TRANG ĐIỂM</b></label>
+            <div style="width:30%;height:2.5px; background-color: #6E573D; margin-left:20px;"></div>
+
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='4' class="product">
+                    <img class="product-img" src="~/images/m5.jpg" />
+                    <label class="product-name"><a href="#">BACKROUGE VERSION 1</a></label>
+                    Giá cũ: <label class="product-oldprice"><s>150.000đ</s></label> <br />
+                    Giá mới: <label class="product-price">145.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' onclick="location='ct.html'" value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='5' class="product">
+                    <img class="product-img" src="~/images/m6.jpg" />
+                    <label class="product-name"><a href="#">BBIA LAST VELVET LIP TINT - VERSION 5</a></label>
+                    Giá cũ: <label class="product-oldprice"><s>280.000đ</s></label> <br />
+                    Giá mới: <label class="product-price">150.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='6' class="product">
+                    <img class="product-img" src="~/images/m7.jpg" />
+                    <label class="product-name"><a href="#">Son đánh lòng môi cực xinh...</a></label>
+                    Giá cũ: <label class="product-oldprice"><s>299.000đ</s></label> <br />
+                    Giá mới: <label class="product-price">199.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='7' class="product">
+                    <img class="product-img" src="~/images/m8.jfif" />
+                    <label class="product-name"><a href="#">Son nữ hoàng 3 màu tiện lợi...</a></label>
+                    Giá cũ: <label class="product-oldprice"><s>500.000đ</s></label><br />
+                    Giá mới: <label class="product-price">399.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+
+            <label style="padding-left:20px;line-height: 40px;font-size: 25px;color: #6E573D"><b>CHĂM SÓC DA</b></label>
+            <div style="width:30%;height:2.5px; background-color: #6E573D; margin-left:20px;"></div>
+
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='8' class="product">
+                    <img class="product-img" src="~/images/sale2.png" />
+                    <label class="product-name"><a href="#">Water Bank Eye Gel</a></label>
+
+                    Giá bán: <label class="product-price">760.000 đ</label><br />
+
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' onclick="location='ct.html'" value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='9' class="product">
+                    <img class="product-img" src="~/images/sale3.png" />
+                    <label class="product-name"><a href="#">Perfect Renew Youth Regenerating Eye Gream</a></label>
+
+                    Giá bán: <label class="product-price">1.200.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='10' class="product">
+                    <img class="product-img" src="~/images/sale7.png" />
+                    <label class="product-name"><a href="#">Radian-C Cream</a></label>
+
+                    Giá mới: <label class="product-price">1.200.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div id='11' class="product">
+                    <img class="product-img" src="~/images/sale9.png" />
+                    <label class="product-name"><a href="#">Cream Skin Refiner</a></label>
+
+                    Giá mới: <label class="product-price">600.000 đ</label>
+                    <input type='button' class='btn-buy' value='CHỌN MUA' />
+                    <input type='button' class='btn-view' value='CHI TIẾT' />
+                </div>
+            </div>
+
+            <div class="col-3 col-m-6 col-s-12">
+                <div class="icon-type">
+                    <a href="">
+                        <img src="~/images/icon-phone.png" alt="">
+                    </a>
+                    <p>Hotline: 1900 000 000 (Giờ Mở Cửa 9:00 - 21:30)</p>
+                </div>
+
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div class="icon-type">
+                    <a href="">
+                        <img src="~/images/admin.png" alt="">
+                    </a>
+                    <p>Hỗ trợ đặt hàng: beautyshop@gmail.com</p>
+                </div>
+
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div class="icon-type">
+                    <a href="">
+                        <img src="~/images/lh.jpg" alt="">
+                    </a>
+                    <p>Liên hệ hợp tác: Sale@beauty.com</p>
+                </div>
+
+            </div>
+            <div class="col-3 col-m-6 col-s-12">
+                <div class="icon-type">
+                    <a href="">
+                        <img src="~/images/dc.png" alt="">
+                    </a>
+                    <p>số 000 đường 000 huyện 000 </p>
+                </div>
+
+            </div>-->
+
+            <div style="clear: both"></div>
+
+        </div>
+    </div>
+</div>
+<script src='~/js/beauty.js'></script>
+<script>
+    //LoadImage()
+</script>
+

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TH_MVC.Models.Sanpham>
+@{
+    ViewBag.Title = "Index3";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*LaySPTheoLoai*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/Controller/CustemController.js"></script>
+</head>
+<body ng-app="MyApp">
+
+    
+    <table class="table" ng-controller="SanPhamController">
+        <tr>
+            <th>MaSP</th>
+            <th>TenSp</th>
+            <th>Maloai</th> 
+            <th>DonVi</th>
+            <th>Mota</th>
+            <th>Anh</th>
+            <th>AnhTo</th>
+            <th></th>
+        </tr>
+
+        <tr ng-repeat="sp in SanPhams">
+            <td>{{sp.MaSP}}</td>
+            <td>{{sp.TenSp}}</td>
+            <td>{{sp.Maloai}}</td>
+            <td>{{sp.DonVi}}</td>
+            <td>{{sp.Mota}}</td>
+            <td><img src="{{Anh}}" /></td>
+            <td><img src="{{AnhTo}}" /></td>
+            <td>
+                @*<button><i class="fas fa-edit"></i></button*@
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+

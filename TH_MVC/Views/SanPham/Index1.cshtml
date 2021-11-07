@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index1</title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div ng-app="MyApp" ng-controller="MyController">
+        @*<p ng-bind="mycolor"></p>
+            Color:<input type="text" ng-model="mycolor" style="background-color:{{mycolor}}" />*@
+        <form name="myform">
+            <p>Name:<input type="text" ng-model="User[1].name" /></p>
+            <p>pass:<input type="password" ng-model="User[1].pass" /></p>
+            @*<p>Email:<input type="email" name="mymail"ng-model="mail" required/></p>
+                <span style="background-color:yellow; color:red" ; ng-show="myform.mymail.$error.required">Email ko hợp lệ</span>*@
+            @*<div>
+                    Tên:{{User.name}} Pass:{{User.pass}}
+                </div>*@
+            <button ng-click="Login()">Login</button>
+        </form>
+    </div>
+    <p ng-bind="name"></p>
+
+
+
+    <script src="~/Scripts/Controller/JavaScriptController.js"></script>
+
+</body>
+
+
+</html>
+

@@ -1,0 +1,147 @@
+﻿<html>
+<head>
+    <title>
+        SHOP BEAUTY
+    </title>
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset='utf-8' />
+    <link rel="stylesheet" type="text/css" href="~/css/beauty.css" />
+    <link rel='stylesheet' type="text/css" href="~/css/ct.css">
+    <script src='~/js/jquery-3.6.0.min.js' type='text/javascript'></script>
+
+    <script src="~/Scripts/angular.min.js"></script>
+
+    <script src="~/Scripts/dirPagination.js"></script>
+
+    <script src="~/js/beauty.js"></script>
+    <script src="~/js/load_img.js"></script>
+    <script src="~/js/images.js"></script>
+    <script src="~/Scripts/Controller/CustommerController.js"></script>
+
+</head>
+<body  ng-app="CustommerApp">
+    <div class='row '>
+        <div class='col-6 col-m-6 col-s-12'>
+            <ul id='left'>
+                <li>Hotline: 1900 000 000</li>
+            </ul>
+        </div>
+        <div class='col-6 col-m-6 col-s-12'>
+            <div id='right'>
+                <a href='~/login.html' style='color: white;'>Đăng nhập</a>
+                /
+                <a href='~/DangKy.html' style='color: white;'>Đăng ký</a>
+            </div>
+        </div>
+    </div>
+    <div id="header">
+        <div class='headers'>
+            <div class='header-left' style='width: 300px;height: 120px; padding-left:50px;'>
+                <img src='~/images/logo1.jpg' style='width: 250px;height: 115px;border-radius: 30px' />
+            </div>
+            <div class='header-right' style='padding-left:200px;'>
+                <div class="search">
+
+                    <input id="txt-search" type="text" placeholder="Nhập tên sản phẩm cần tìm..." />
+
+
+                    <img id='btn-search' src="~/images/gg.png" />
+
+                </div>
+                <div class='cart-zone'>
+
+                    <label class='cart-label'>Giỏ hàng</label>
+                    <a href='~/beauty-dh.html'>
+                        <img class='cart-icon' src='~/images/cart-icon.png' />
+                        <label class='cart-amount'>2</label>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="nav">
+        <div id="menu">
+            <ul>
+                <li><a href="~/beauty.html">HOME</a></li>
+                <li><a href="~/sale.html">SALE</a></li>
+                <li><a href="#">BÁN CHẠY</a></li>
+                <li><a href="#">HÀNG MỚI VỀ</a></li>
+                <li><a href="#">CHĂM SÓC DA</a></li>
+                <li>
+                    <a href="#">TRANG ĐIỂM</a>
+                    <ul ng-controller="MenuController">
+                        <li ng-repeat="l in listDongSP">
+                            <a ng-click="SelectDongSP(l.MaDongSP)" href="/SanPham/TrangDiem">{{l.TenDongSP}}</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">THƯƠNG HIỆU</a>
+                    <ul>
+                        <li><a href="~/laneige.html">LANEIGE</a></li>
+                        <li><a href="~/anessa.html">ANESSA</a></li>
+                        <li><a href="~/backrouge.html">BACKROUGE</a></li>
+                        <li><a href="~/3ce.html">3CE</a></li>
+                        <li><a href="~/inisfree.html">INNISSFREE</a></li>
+                        <li><a href="~/bbia.html">BBIA</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    @RenderBody() @*Chèn mã html của các site mà sd share layout này*@
+
+    <div id="footer">
+        <div id='footer1'>
+            <div class="col-4 col-m-8 col-s-12">
+                <div class="1">
+                    <a>
+                        CÔNG TY TNHH MTV THƯƠNG MẠI DỊCH VỤ BLUE OCEAN
+                        <br> Giấy CNĐKDN Số: 0316037655 do Sở kế hoạch và đầu tư Tp. HCM cấp ngày 25/11/2019
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-4 col-m-8 col-s-12">
+                <div class="1">
+                    <a>CHỨNG CHỈ ĐẠI LÝ CHÍNH HÃNG</a><br>
+                    <a>PHƯƠNG THỨC THANH TOÁN</a><br>
+                    <a>CHÍNH SÁCH GIAO HÀNG</a><br>
+                    <a>CHÍNH SÁCH BẢO MẬT</a><br>
+                    <a>CHÍNH SÁCH ĐỔI TRẢ</a><br>
+                    <a>ĐIỀU KHOẢN MUA BÁN</a><br>
+                    <a>LIÊN HỆ</a><br>
+                    <a>TUYỂN DỤNG</a><br>
+                </div>
+
+            </div>
+            <div class="col-4 col-m-8 col-s-12">
+                <div class="icon">
+                    Kết nối với chúng tôi<br>
+                    <a href="">
+                        <img src="~/images/f.png">
+                    </a>
+                    <a href="">
+                        <img src="~/images/ita.jpg">
+                    </a>
+                    <a href="">
+                        <img src="~/images/youtobe.png">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @*<script src='~/js/data.js'></script>
+    <script src='~/js/seach.js'></script>*@
+</body>
+
+</html>
