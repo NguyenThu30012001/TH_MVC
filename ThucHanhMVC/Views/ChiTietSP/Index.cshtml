@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div id='main'>
+<div id='main' ng-controller="SanPhamController">
     <label style="padding-left:20px;line-height: 40px;font-size: 25px;color: #6E573D"><b>CHI TIẾT SẢN PHẨM</b></label>
     <div style="width:30%;height:2.5px; background-color: #6E573D; margin-left:20px;"></div>
     <div class="col-6 col-m-6 col-s-12" id='product'>
@@ -21,9 +21,9 @@
             <li><img src='~/images/s15.jpg' onclick="changeImage('five')" id="five" /></li>
         </ul>
     </div>
-    <div class="col-6 col-m-6 col-s-12">
+    <div class="col-6 col-m-6 col-s-12" ng-repeat="s in listSanPham">
         <div class='product1'>
-            <h2>Son kem lì Bbia Last Velvet Lip Tint Version 3 5g (5 màu)</h2>
+            <h2>{{s.TenSp}}</h2>
             <a style='font-size:20px;'>
                 Giá thị trường:
                 <label style='color:#CCC'><s><u>đ</u>290.000</s></label><br />
